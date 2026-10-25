@@ -82,6 +82,15 @@ const invitationData = {
         ceremonyBadge: "Baby Shower Ceremony",
 
         // Closing Section
+        closingHeader: "With Love & Blessings",
+        closingMessage: "Your presence will make our celebration truly special.",
+        closingSignOff: "With warm regards,",
+        closingParents: "Srinivasan & Pushpa",
+        closingSon: "Together with Vignesh",
+        closingCelebrating: "Celebrating Thejaswini",
+
+        eventConcludedMessage: "The celebration has begun! Thank you for showering Thejaswini and our family with love & blessings."
+    },
 
     // RSVP Configuration
     rsvp: {

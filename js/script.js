@@ -6,33 +6,32 @@
 
 document.addEventListener("DOMContentLoaded", () => {
     // 1. Initialize Dynamic Content from Centralized invitationData
-    initInvitationContent();
+    try { initInvitationContent(); } catch (err) { console.error("initInvitationContent error:", err); }
 
     // 2. Initialize Welcome Screen Opening Experience
-    initWelcomeExperience();
+    try { initWelcomeExperience(); } catch (err) { console.error("initWelcomeExperience error:", err); }
 
     // 3. Initialize Live Countdown Timer
-    initCountdownTimer();
+    try { initCountdownTimer(); } catch (err) { console.error("initCountdownTimer error:", err); }
 
     // 4. Initialize Calendar Integration (Google Calendar & .ics Download)
-    initCalendarActions();
+    try { initCalendarActions(); } catch (err) { console.error("initCalendarActions error:", err); }
 
+    // 5. Initialize Venue & Map Actions
+    try { initVenueActions(); } catch (err) { console.error("initVenueActions error:", err); }
 
-    // 6. Initialize Venue & Map Actions
-    initVenueActions();
+    // 6. Initialize RSVP Logic & WhatsApp Integration
+    try { initRsvpSection(); } catch (err) { console.error("initRsvpSection error:", err); }
 
-    // 7. Initialize RSVP Logic & WhatsApp Integration
-    initRsvpSection();
+    // 7. Initialize Royal Background Music (Audio / Synth)
+    try { initMusicPlayer(); } catch (err) { console.error("initMusicPlayer error:", err); }
 
-    // 8. Initialize Royal Background Music (Audio / Synth)
-    initMusicPlayer();
+    // 8. Initialize Floating Golden Sparkles & Rose Petals Canvas
+    try { initParticlesCanvas(); } catch (err) { console.error("initParticlesCanvas error:", err); }
 
-    // 9. Initialize Floating Golden Sparkles & Rose Petals Canvas
-    initParticlesCanvas();
-
-    // 10. Initialize Scroll Reveal Animations & General Utilities
-    initScrollReveal();
-    initShareAndScroll();
+    // 9. Initialize Scroll Reveal Animations & General Utilities
+    try { initScrollReveal(); } catch (err) { console.error("initScrollReveal error:", err); }
+    try { initShareAndScroll(); } catch (err) { console.error("initShareAndScroll error:", err); }
 });
 
 /**
@@ -160,6 +159,11 @@ function initWelcomeExperience() {
         // Add opened state to trigger CSS doors sliding & center fade
         welcomeScreen.classList.add("opened");
 
+        // Immediately ensure main invitation section is revealed
+        if (mainSection) {
+            mainSection.classList.add("is-revealed");
+        }
+
         // Try playing music as this is an explicit user touch/click gesture
         if (window.playBgMusic) {
             window.playBgMusic();
@@ -170,13 +174,19 @@ function initWelcomeExperience() {
             if (mainSection) {
                 mainSection.scrollIntoView({ behavior: "smooth" });
             }
-        }, 400);
+        }, 300);
 
         // Remove from DOM accessibility tree after animation completes
         setTimeout(() => {
             welcomeScreen.style.display = "none";
+            document.querySelectorAll(".reveal-on-scroll").forEach((el) => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight + 150) {
+                    el.classList.add("is-revealed");
+                }
+            });
             window.dispatchEvent(new Event("scroll"));
-        }, 1400);
+        }, 1200);
     });
 }
 
@@ -609,12 +619,18 @@ function initMusicPlayer() {
             if (musicIcon) musicIcon.style.display = "none";
         }
 
-        // Try external audio first, if fails or ends, use procedural lullaby
-        if (externalAudio && !invitationData.audio.useBuiltInSynthIfFileMissing) {
-            externalAudio.play().catch(() => {
-                startGenerativeMusic();
-            });
-        } else {
+        // Try external audio first, with fallback to procedural lullaby if missing or blocked
+        if (externalAudio) {
+            const playPromise = externalAudio.play();
+            if (playPromise !== undefined) {
+                playPromise.catch((err) => {
+                    console.warn("External audio playback error, falling back to synth:", err);
+                    if (invitationData.audio && invitationData.audio.useBuiltInSynthIfFileMissing) {
+                        startGenerativeMusic();
+                    }
+                });
+            }
+        } else if (invitationData.audio && invitationData.audio.useBuiltInSynthIfFileMissing) {
             startGenerativeMusic();
         }
     }
@@ -748,18 +764,34 @@ function initParticlesCanvas() {
 function initScrollReveal() {
     const reveals = document.querySelectorAll(".reveal-on-scroll");
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("is-revealed");
+    const checkVisible = () => {
+        reveals.forEach((el) => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight + 150) {
+                el.classList.add("is-revealed");
             }
         });
-    }, {
-        threshold: 0.05,
-        rootMargin: "80px 0px 80px 0px"
-    });
+    };
 
-    reveals.forEach((el) => observer.observe(el));
+    // Immediately reveal visible elements
+    checkVisible();
+
+    if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("is-revealed");
+                }
+            });
+        }, {
+            threshold: 0.05,
+            rootMargin: "80px 0px 80px 0px"
+        });
+
+        reveals.forEach((el) => observer.observe(el));
+    } else {
+        window.addEventListener("scroll", checkVisible, { passive: true });
+    }
 }
 
 function initShareAndScroll() {

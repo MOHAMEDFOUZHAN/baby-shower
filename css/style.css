@@ -8,9 +8,9 @@
     /* Color Palette */
     --gold-champagne: #D4AF72;
     --gold-light: #F3E5C8;
-    --gold-rich: #C59A53;
-    --gold-deep: #9B7230;
-    --gold-gradient: linear-gradient(135deg, #F5DEB3 0%, #D4AF72 40%, #B8860B 80%, #9B7230 100%);
+    --gold-rich: #A67527;
+    --gold-deep: #8E631F;
+    --gold-gradient: linear-gradient(135deg, #ECC880 0%, #D4AF72 40%, #B8860B 80%, #8E631F 100%);
     --gold-gradient-soft: linear-gradient(135deg, rgba(212, 175, 114, 0.18) 0%, rgba(212, 175, 114, 0.05) 100%);
     --gold-border-gradient: linear-gradient(135deg, #D4AF72 0%, #FFF0D4 50%, #C59A53 100%);
 
@@ -130,14 +130,14 @@ h1, h2, h3, h4 {
 }
 
 .gold-text {
-    background: var(--gold-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--gold-deep);
+    -webkit-text-fill-color: var(--gold-deep);
+    background: none;
     display: inline-block;
 }
 
 .gold-text-solid {
-    color: var(--gold-rich);
+    color: var(--gold-deep);
 }
 
 /* Section Wrapper */
@@ -583,7 +583,7 @@ h1, h2, h3, h4 {
 
 .couple-ampersand {
     font-family: var(--font-script);
-    color: var(--gold-rich);
+    color: var(--gold-deep);
     font-size: 1.1em;
     margin: 0 10px;
     vertical-align: middle;
