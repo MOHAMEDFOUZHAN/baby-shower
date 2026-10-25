@@ -885,9 +885,36 @@ h1, h2, h3, h4 {
 }
 
 .venue-landmark {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+/* Embedded Google Map Frame */
+.venue-map-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 620px;
+    margin: 28px auto 0 auto;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1.5px solid rgba(212, 175, 114, 0.5);
+    box-shadow: 0 10px 28px rgba(109, 38, 56, 0.08), 0 2px 8px rgba(212, 175, 114, 0.2);
+    background: #FFFDF9;
+    transition: var(--transition-smooth);
+}
+
+.venue-map-wrapper:hover {
+    box-shadow: 0 14px 34px rgba(212, 175, 114, 0.35);
+    border-color: var(--gold-rich);
+    transform: translateY(-2px);
+}
+
+.venue-map-wrapper iframe {
+    display: block;
+    width: 100%;
+    height: 320px;
+    border: none;
 }
 
 .venue-actions {

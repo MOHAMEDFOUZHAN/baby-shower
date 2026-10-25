@@ -105,17 +105,29 @@ function initInvitationContent() {
     }
     const quickVenue = document.getElementById("data-quick-venue");
     if (quickVenue) {
-        quickVenue.style.display = (d.features && d.features.showVenue) ? "block" : "none";
+        if (d.features && d.features.showVenue && d.event.venue) {
+            quickVenue.style.display = "block";
+            quickVenue.innerHTML = `📍 <strong>${d.event.venue.name}</strong>, ${d.event.venue.city || 'Chamarajanagar'}`;
+        } else {
+            quickVenue.style.display = "none";
+        }
     }
 
-
-    // Venue section details (if enabled later)
+    // Venue section details
     if (d.event.venue) {
         setText("data-venue-name", d.event.venue.name);
         setText("data-venue-subhall", d.event.venue.subTitle);
         setHtml("data-venue-address", d.event.venue.fullAddress);
         if (d.event.venue.landmark) {
-            setText("data-venue-landmark", `Landmark: ${d.event.venue.landmark}`);
+            const landmarkEl = document.getElementById("data-venue-landmark");
+            if (landmarkEl) {
+                landmarkEl.textContent = `Landmark: ${d.event.venue.landmark}`;
+                landmarkEl.style.display = "block";
+            }
+        }
+        const mapIframe = document.getElementById("venue-map-iframe");
+        if (mapIframe && d.event.venue.embedMapUrl) {
+            mapIframe.src = d.event.venue.embedMapUrl;
         }
     }
 
@@ -346,6 +358,7 @@ function initVenueActions() {
 
     if (directionsBtn) {
         const mapUrl = invitationData.event.venue.googleMapsUrl || 
+            invitationData.event.venue.googleShareUrl ||
             `https://maps.google.com/?q=${encodeURIComponent(invitationData.event.venue.fullAddress)}`;
         directionsBtn.href = mapUrl;
     }

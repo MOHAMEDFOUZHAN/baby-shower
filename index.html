@@ -202,8 +202,8 @@
                         <span id="data-event-time">To be announced</span>
                     </div>
 
-                    <p class="venue-location-hint" style="display: none;" id="data-quick-venue">
-                        Venue to be announced
+                    <p class="venue-location-hint" id="data-quick-venue">
+                        📍 <strong>Varthakara Bhavana</strong>, Chamarajanagar
                     </p>
 
                     <!-- Add to Calendar Action Buttons -->
@@ -246,9 +246,9 @@
 
 
         <!-- ==============================================================================
-             SECTION 6: EVENT VENUE (Configurable placeholder, hidden until officially announced)
+             SECTION 6: EVENT VENUE & MAP LOCATION
              ============================================================================== -->
-        <section id="event-venue" class="invitation-section reveal-on-scroll" style="display: none;">
+        <section id="event-venue" class="invitation-section reveal-on-scroll">
             <div class="venue-card">
                 <div class="card-inset-border" aria-hidden="true"></div>
 
@@ -258,21 +258,36 @@
                     </svg>
                 </div>
 
-                <span class="section-eyebrow">The Celebration</span>
-                <h3 class="venue-name" id="data-venue-name">To be announced</h3>
-                <p class="venue-subhall" id="data-venue-subhall"></p>
+                <span class="section-eyebrow">The Celebration Venue</span>
+                <h3 class="venue-name" id="data-venue-name">Varthakara Bhavana</h3>
+                <p class="venue-subhall" id="data-venue-subhall">Kalyana Mantapa &amp; Community Hall</p>
 
                 <div class="venue-address-box">
                     <p class="venue-address-text" id="data-venue-address">
-                        Venue details will be shared soon
+                        Varthakara Bhavana, B.R. Double Road, Bhagirath Nagar, Chamarajanagar, Karnataka – 571313
                     </p>
-                    <p class="venue-landmark" id="data-venue-landmark" style="display: none;"></p>
+                    <p class="venue-landmark" id="data-venue-landmark">Landmark: Near Double Road, Chamarajanagar</p>
+                </div>
+
+                <!-- Interactive Google Map Location -->
+                <div class="venue-map-wrapper">
+                    <iframe 
+                        id="venue-map-iframe"
+                        title="Varthakara Bhavana Location Map"
+                        src="https://maps.google.com/maps?q=Varthakara+Bhavana,+B.R.+Double+Road,+Chamarajanagar,+Karnataka+571313&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
+                        width="100%" 
+                        height="320" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
                 </div>
 
                 <div class="venue-actions">
-                    <a id="venue-directions-btn" href="#" target="_blank" rel="noopener noreferrer" class="action-pill-btn btn-directions">
+                    <a id="venue-directions-btn" href="https://maps.google.com/?q=Varthakara+Bhavana,+B.R.+Double+Road,+Chamarajanagar,+Karnataka+571313" target="_blank" rel="noopener noreferrer" class="action-pill-btn btn-directions">
                         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.71 11.29l-9-9c-.39-.39-1.02-.39-1.41 0l-9 9c-.39.39-.39 1.02 0 1.41l9 9c.39.39 1.02.39 1.41 0l9-9c.39-.38.39-1.01 0-1.41zM14 14.5V12h-4v3H8v-4c0-.55.45-1 1-1h5V7.5l3.5 3.5-3.5 3.5z"/></svg>
-                        <span>Get Directions</span>
+                        <span>Get Directions on Google Maps</span>
                     </a>
                     <button id="copy-address-btn" class="action-pill-btn btn-copy-address" aria-label="Copy venue address to clipboard">
                         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>

@@ -20,14 +20,15 @@ An elegant, royal, and luxurious single-page digital invitation website crafted 
 3. **Section 3: Event Date & Live Countdown**
    - Calendar-card design with Save the Date, day (**Wednesday**), date (**11 November 2026**), and occasion (**Baby Shower Ceremony**).
    - Live real-time countdown timer (Days, Hours, Minutes, Seconds) dynamically computed to the beginning of 11 November 2026 in the configured timezone (`Asia/Kolkata`).
-   - Venue and event time details are kept as configurable placeholders and hidden from the published invitation until officially finalized.
-   - **Google Calendar** integration and instant **Apple / Outlook (.ics)** file generation.
+   - Venue displayed (**Varthakara Bhavana**, Chamarajanagar).
+   - **Google Calendar** integration and instant **Apple / Outlook (.ics)** file generation with venue location.
 
 
 
-6. **Section 6: Event Venue & Directions**
-   - Configurable placeholder section; easily toggled on in `js/data.js` (`features.showVenue: true`) once venue details are announced.
-   - Ready for Google Maps directions and one-click address clipboard copying.
+6. **Section 6: Event Venue & Interactive Map**
+   - Features **Varthakara Bhavana** (Kalyana Mantapa & Community Hall), B.R. Double Road, Bhagirath Nagar, Chamarajanagar, Karnataka.
+   - Embedded interactive **Google Map** location frame with luxury gold border styling.
+   - Direct **Get Directions on Google Maps** navigation and one-click address clipboard copying.
 
 7. **Section 7: Interactive RSVP Interface**
    - Form fields for Guest Name, Attendance choice (*Joyfully Accept* / *Regretfully Decline*), Guest Count (`+` / `-` controls), and optional warm blessings/dietary notes.

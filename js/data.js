@@ -50,18 +50,20 @@ const invitationData = {
         time: "To be announced",
         timeZone: "Asia/Kolkata",
         
-        // Configurable placeholders for venue (hidden from published view until announced)
+        // Configurable venue details
         venue: {
-            name: "To be announced",
-            subTitle: "",
-            addressLine1: "",
-            city: "",
-            state: "",
+            name: "Varthakara Bhavana",
+            subTitle: "Kalyana Mantapa & Community Hall",
+            addressLine1: "B.R. Double Road, Bhagirath Nagar",
+            city: "Chamarajanagar",
+            state: "Karnataka",
             country: "India",
-            pincode: "",
-            fullAddress: "Venue details will be shared soon",
-            googleMapsUrl: "",
-            landmark: ""
+            pincode: "571313",
+            fullAddress: "Varthakara Bhavana, B.R. Double Road, Bhagirath Nagar, Chamarajanagar, Karnataka – 571313",
+            googleMapsUrl: "https://maps.google.com/?q=Varthakara+Bhavana,+B.R.+Double+Road,+Chamarajanagar,+Karnataka+571313",
+            googleShareUrl: "https://share.google/boir4mrsS34Iw4s5H",
+            embedMapUrl: "https://maps.google.com/maps?q=Varthakara+Bhavana,+B.R.+Double+Road,+Chamarajanagar,+Karnataka+571313&t=&z=16&ie=UTF8&iwloc=&output=embed",
+            landmark: "Near Double Road, Chamarajanagar"
         }
     },
 
@@ -115,8 +117,8 @@ const invitationData = {
         backgroundMusic: true,
         floatingPetals: true,
         shareInvitation: true,
-        // Venue and event time have not been provided; kept hidden until officially finalized
-        showVenue: false,
+        // Venue details enabled for Varthakara Bhavana
+        showVenue: true,
         showEventTime: false
     },
 
