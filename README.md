@@ -23,13 +23,7 @@ An elegant, royal, and luxurious single-page digital invitation website crafted 
    - Venue and event time details are kept as configurable placeholders and hidden from the published invitation until officially finalized.
    - **Google Calendar** integration and instant **Apple / Outlook (.ics)** file generation.
 
-4. **Section 4: A Message of Love**
-   - Heartwarming, emotional storytelling honoring Thejaswini and the journey into motherhood.
-   - Delicate Indian lotus emblem and gold dividers.
 
-5. **Section 5: Sacred Rituals & Traditions**
-   - Four cultural blessing cards with custom royal gold circular motifs: *Valaikappu* (bangles), *Aashirvaad* (elder blessings & akshata), *Nalangu & Chandanam* (cooling sandalwood & turmeric), and *Panchamirtham & Feast* (traditional sweets & celebration).
-   - Fully responsive with elegant micro-interactions, ivory card gradients, and gold border detailing.
 
 6. **Section 6: Event Venue & Directions**
    - Configurable placeholder section; easily toggled on in `js/data.js` (`features.showVenue: true`) once venue details are announced.

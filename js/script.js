@@ -17,8 +17,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // 4. Initialize Calendar Integration (Google Calendar & .ics Download)
     initCalendarActions();
 
-    // 5. Initialize Sacred Rituals & Traditions
-    initSacredRituals();
 
     // 6. Initialize Venue & Map Actions
     initVenueActions();
@@ -111,10 +109,6 @@ function initInvitationContent() {
         quickVenue.style.display = (d.features && d.features.showVenue) ? "block" : "none";
     }
 
-    // Message of Love
-    setText("data-love-title", d.content.messageOfLoveTitle);
-    setText("data-love-p1", `"${d.content.messageOfLoveParagraph1}"`);
-    setText("data-love-p2", `"${d.content.messageOfLoveParagraph2}"`);
 
     // Venue section details (if enabled later)
     if (d.event.venue) {
@@ -181,6 +175,7 @@ function initWelcomeExperience() {
         // Remove from DOM accessibility tree after animation completes
         setTimeout(() => {
             welcomeScreen.style.display = "none";
+            window.dispatchEvent(new Event("scroll"));
         }, 1400);
     });
 }
@@ -326,19 +321,6 @@ function initCalendarActions() {
     }
 }
 
-/**
- * ------------------------------------------------------------------------------
- * 5. SACRED RITUALS & TRADITIONS
- * ------------------------------------------------------------------------------
- */
-function initSacredRituals() {
-    const ritualsSection = document.getElementById("sacred-rituals");
-    if (!ritualsSection) return;
-
-    if (invitationData.features && invitationData.features.sacredRituals === false) {
-        ritualsSection.style.display = "none";
-    }
-}
 
 /**
  * ------------------------------------------------------------------------------
@@ -773,8 +755,8 @@ function initScrollReveal() {
             }
         });
     }, {
-        threshold: 0.12,
-        rootMargin: "0px 0px -50px 0px"
+        threshold: 0.05,
+        rootMargin: "80px 0px 80px 0px"
     });
 
     reveals.forEach((el) => observer.observe(el));

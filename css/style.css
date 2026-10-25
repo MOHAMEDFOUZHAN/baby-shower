@@ -657,11 +657,14 @@ h1, h2, h3, h4 {
 }
 
 .event-day {
-    font-family: var(--font-script);
-    font-size: clamp(2rem, 6vw, 2.8rem);
+    font-family: var(--font-display);
+    font-size: clamp(1.2rem, 3.5vw, 1.65rem);
+    font-weight: 600;
+    letter-spacing: clamp(0.18em, 1.8vw, 0.28em);
+    text-transform: uppercase;
     color: var(--gold-rich);
-    line-height: 1;
-    margin-bottom: 4px;
+    line-height: 1.3;
+    margin-bottom: 8px;
 }
 
 .event-date-large {
@@ -820,185 +823,7 @@ h1, h2, h3, h4 {
     fill: currentColor;
 }
 
-/* ==============================================================================
-   SECTION 4: A MESSAGE OF LOVE
-   ============================================================================== */
-.message-love-card {
-    background: radial-gradient(circle at 50% 50%, #FFFDF8 0%, #F8EFE4 100%);
-    border-radius: 36px;
-    padding: 64px 48px;
-    border: 1px solid rgba(212, 175, 114, 0.45);
-    position: relative;
-}
 
-.message-love-title {
-    font-family: var(--font-script);
-    font-size: clamp(2.5rem, 7vw, 3.8rem);
-    color: var(--burgundy-deep);
-    margin-bottom: 24px;
-    line-height: 1.15;
-}
-
-.message-paragraphs {
-    max-width: 620px;
-    margin: 0 auto;
-}
-
-.message-paragraphs p {
-    font-family: var(--font-serif);
-    font-size: 1.25rem;
-    line-height: 1.85;
-    color: var(--text-primary);
-    margin-bottom: 18px;
-}
-
-.message-paragraphs p:last-child {
-    margin-bottom: 0;
-    color: var(--text-secondary);
-}
-
-.lotus-motif-center {
-    width: 60px;
-    height: auto;
-    margin: 24px auto 0 auto;
-    opacity: 0.85;
-}
-
-/* ==============================================================================
-   SECTION 5: SACRED RITUALS & TRADITIONS (Cultural Heritage Cards)
-   ============================================================================== */
-.rituals-intro-text {
-    font-family: var(--font-serif);
-    font-size: clamp(1rem, 2.5vw, 1.15rem);
-    line-height: 1.8;
-    color: var(--text-secondary);
-    max-width: 620px;
-    margin: 16px auto 0;
-    text-align: center;
-}
-
-.rituals-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 28px;
-    max-width: 880px;
-    margin: 0 auto;
-}
-
-.ritual-card {
-    background: linear-gradient(
-        165deg,
-        rgba(255, 253, 249, 0.95) 0%,
-        rgba(247, 240, 228, 0.9) 50%,
-        rgba(255, 253, 249, 0.95) 100%
-    );
-    border-radius: 24px;
-    padding: clamp(28px, 5vw, 44px) clamp(20px, 4vw, 36px);
-    border: 1.5px solid rgba(212, 175, 114, 0.45);
-    box-shadow: var(--shadow-card);
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    transition: var(--transition-slow);
-}
-
-.ritual-card::before {
-    content: "";
-    position: absolute;
-    top: 10px; left: 10px; right: 10px; bottom: 10px;
-    border: 1px solid rgba(212, 175, 114, 0.25);
-    border-radius: 18px;
-    pointer-events: none;
-    transition: var(--transition-smooth);
-}
-
-.ritual-card::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(
-        ellipse at 50% 0%,
-        rgba(212, 175, 114, 0.08) 0%,
-        transparent 60%
-    );
-    pointer-events: none;
-}
-
-.ritual-card:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--shadow-elevated), var(--gold-glow);
-    border-color: var(--gold-rich);
-}
-
-.ritual-card:hover::before {
-    border-color: rgba(212, 175, 114, 0.6);
-}
-
-.ritual-icon-wrap {
-    width: 88px;
-    height: 88px;
-    margin: 0 auto 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    z-index: 1;
-}
-
-.ritual-icon-wrap svg {
-    filter: drop-shadow(0 2px 6px rgba(212, 175, 114, 0.3));
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.ritual-card:hover .ritual-icon-wrap svg {
-    transform: scale(1.1) rotate(3deg);
-}
-
-.ritual-title {
-    font-family: var(--font-script);
-    font-size: clamp(1.6rem, 4vw, 2.2rem);
-    margin-bottom: 6px;
-    position: relative;
-    z-index: 1;
-    line-height: 1.3;
-}
-
-.ritual-subtitle {
-    font-family: var(--font-sans);
-    font-size: clamp(0.72rem, 2vw, 0.82rem);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold-rich);
-    font-weight: 600;
-    margin-bottom: 16px;
-    position: relative;
-    z-index: 1;
-}
-
-.ritual-description {
-    font-family: var(--font-serif);
-    font-size: clamp(0.92rem, 2.2vw, 1.05rem);
-    line-height: 1.75;
-    color: var(--text-primary);
-    position: relative;
-    z-index: 1;
-}
-
-.ritual-description em {
-    color: var(--burgundy-deep);
-    font-style: italic;
-}
-
-/* Responsive: Stack ritual cards on mobile */
-@media (max-width: 640px) {
-    .rituals-grid {
-        grid-template-columns: 1fr;
-        gap: 22px;
-    }
-}
 
 
 

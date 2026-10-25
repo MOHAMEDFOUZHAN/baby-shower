@@ -81,45 +81,7 @@ const invitationData = {
         saveTheDateBadge: "SAVE THE DATE",
         ceremonyBadge: "Baby Shower Ceremony",
 
-        // Message Section
-        messageOfLoveTitle: "A Little Miracle, A Lifetime of Love",
-        messageOfLoveParagraph1: "A precious new chapter begins, bringing with it endless happiness, beautiful dreams, and unconditional love.",
-        messageOfLoveParagraph2: "Your gracious presence and heartfelt blessings will make this special occasion even more memorable for Thejaswini and our family.",
-
         // Closing Section
-        closingHeader: "With Love & Blessings",
-        closingMessage: "Your presence will make our celebration truly special.",
-        closingSignOff: "With warm regards,",
-        closingParents: "Srinivasan & Pushpa",
-        closingSon: "Together with Vignesh",
-        closingCelebrating: "Celebrating Thejaswini",
-
-        eventConcludedMessage: "The celebration has begun! Thank you for showering Thejaswini and our family with love & blessings."
-    },
-
-    // Sacred Rituals & Traditions
-    rituals: [
-        {
-            title: "Valaikappu",
-            subtitle: "Bangles of Love & Protection",
-            description: "Adorning the mother-to-be with colourful glass and gold bangles, whose gentle jingling sound is believed to stimulate and comfort the baby in the womb — a beautiful prayer for safe arrival and everlasting joy."
-        },
-        {
-            title: "Aashirvaad",
-            subtitle: "Elder Blessings & Sacred Rice",
-            description: "Elders lovingly shower sacred akshata (yellow rice) and fragrant flowers upon the mother-to-be, invoking divine protection and praying for good health, happiness, and a beautiful new beginning."
-        },
-        {
-            title: "Nalangu & Chandanam",
-            subtitle: "Divine Radiance & Auspiciousness",
-            description: "Applying fragrant sandalwood paste, turmeric, and kumkum to the mother-to-be — symbolising purity, coolness, and the radiant glow of this auspicious occasion blessed by the divine."
-        },
-        {
-            title: "Panchamirtham & Feast",
-            subtitle: "Sacred Sweets & Celebration",
-            description: "Traditional festive delicacies — Panchamirtham, payasam, and lovingly prepared sweets — are offered to nourish the mother-to-be, symbolising sweetness, prosperity, and the celebration of new life."
-        }
-    ],
 
     // RSVP Configuration
     rsvp: {
@@ -144,7 +106,6 @@ const invitationData = {
     // Feature Toggles
     features: {
         countdown: true,
-        sacredRituals: true,
         rsvp: true,
         backgroundMusic: true,
         floatingPetals: true,
