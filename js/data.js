@@ -92,17 +92,13 @@ const invitationData = {
         eventConcludedMessage: "The celebration has begun! Thank you for showering Thejaswini and our family with love & blessings."
     },
 
-    // RSVP Configuration
+    // Blessings & Warm Wishes Configuration
     rsvp: {
-        title: "We Would Love to See You",
-        subtitle: "Your presence and blessings would make this celebration even more special.",
-        deadlineText: "Kindly respond by 5th November 2026",
+        eyebrow: "Shower Your Love",
+        title: "Send Your Blessings",
+        subtitle: "Your warm wishes, prayers, and heartfelt blessings will shower Thejaswini and our family with boundless joy.",
         hostWhatsAppNumber: "", // Configurable host WhatsApp number (e.g., '919876543210')
-        hostEmail: "",
-        options: {
-            acceptLabel: "Joyfully Accept",
-            declineLabel: "Regretfully Decline"
-        }
+        hostEmail: ""
     },
 
     // Audio / Background Music

@@ -119,9 +119,12 @@ function initInvitationContent() {
         }
     }
 
-    // RSVP Section
-    setText("data-rsvp-title", d.rsvp.title);
-    setText("data-rsvp-subtitle", d.rsvp.subtitle);
+    // Blessings Section
+    if (d.rsvp) {
+        if (d.rsvp.eyebrow) setText("data-rsvp-eyebrow", d.rsvp.eyebrow);
+        setText("data-rsvp-title", d.rsvp.title);
+        setText("data-rsvp-subtitle", d.rsvp.subtitle);
+    }
 
     // Closing Section
     setText("data-closing-header", d.content.closingHeader);
@@ -381,83 +384,40 @@ function initVenueActions() {
 
 /**
  * ------------------------------------------------------------------------------
- * 7. RSVP SECTION & WHATSAPP INTEGRATION
+ * 7. BLESSINGS SECTION & WHATSAPP INTEGRATION
  * ------------------------------------------------------------------------------
  */
 function initRsvpSection() {
     const form = document.getElementById("rsvp-form");
-    const labelAccept = document.getElementById("label-accept");
-    const labelDecline = document.getElementById("label-decline");
-    const guestsGroup = document.getElementById("guests-count-group");
-    const guestDisplay = document.getElementById("guest-count-num");
-    const guestInput = document.getElementById("rsvp-guests-count");
-    const decBtn = document.getElementById("counter-decrement");
-    const incBtn = document.getElementById("counter-increment");
+    const nameInput = document.getElementById("rsvp-name");
+    const msgInput = document.getElementById("rsvp-message");
     const whatsappBtn = document.getElementById("rsvp-whatsapp-btn");
     const modal = document.getElementById("rsvp-modal");
     const modalClose = document.getElementById("rsvp-modal-close");
     const modalGuestName = document.getElementById("modal-guest-name");
 
-    let count = 2;
-    let currentAttendance = "attending";
-
-    // Guest Counter Increment / Decrement
-    if (decBtn && incBtn && guestDisplay && guestInput) {
-        decBtn.addEventListener("click", () => {
-            if (count > 1) {
-                count--;
-                guestDisplay.textContent = count;
-                guestInput.value = count;
-                updateWhatsAppLink();
-            }
-        });
-
-        incBtn.addEventListener("click", () => {
-            if (count < 10) {
-                count++;
-                guestDisplay.textContent = count;
-                guestInput.value = count;
-                updateWhatsAppLink();
-            }
-        });
-    }
-
-    // Radio Pill Selection Styling
-    if (labelAccept && labelDecline) {
-        labelAccept.addEventListener("click", () => {
-            currentAttendance = "attending";
-            labelAccept.classList.add("selected-accept");
-            labelDecline.classList.remove("selected-decline");
-            if (guestsGroup) guestsGroup.style.display = "block";
-            updateWhatsAppLink();
-        });
-
-        labelDecline.addEventListener("click", () => {
-            currentAttendance = "declining";
-            labelDecline.classList.add("selected-decline");
-            labelAccept.classList.remove("selected-accept");
-            if (guestsGroup) guestsGroup.style.display = "none";
-            updateWhatsAppLink();
-        });
-    }
-
-    // Dynamic WhatsApp RSVP Message Generator
+    // Dynamic WhatsApp Blessings Message Generator
     function updateWhatsAppLink() {
         if (!whatsappBtn) return;
-        const nameInput = document.getElementById("rsvp-name");
-        const guestName = (nameInput && nameInput.value.trim()) ? nameInput.value.trim() : "Guest";
-        const messageInput = document.getElementById("rsvp-message");
-        const note = (messageInput && messageInput.value.trim()) ? `\nMessage: "${messageInput.value.trim()}"` : "";
+        const guestName = (nameInput && nameInput.value.trim()) ? nameInput.value.trim() : "";
+        const note = (msgInput && msgInput.value.trim()) ? msgInput.value.trim() : "";
 
-        const celebrant = invitationData.family ? invitationData.family.celebratingName : "Thejaswini";
-        const son = invitationData.family ? invitationData.family.sonName : "Vignesh";
-        const parents = invitationData.family ? invitationData.family.parentsCombined : "Srinivasan & Pushpa";
+        const celebrant = (invitationData.family && invitationData.family.celebratingName)
+            ? invitationData.family.celebratingName
+            : "Thejaswini";
+        const son = (invitationData.family && invitationData.family.sonName)
+            ? invitationData.family.sonName
+            : "Vignesh";
+        const parents = (invitationData.family && invitationData.family.parentsCombined)
+            ? invitationData.family.parentsCombined
+            : "Srinivasan & Pushpa";
 
-        let text = "";
-        if (currentAttendance === "attending") {
-            text = `Hello ${parents}, ${son} & ${celebrant}! ✨\nI am joyfully confirming my attendance for the Baby Shower Ceremony of ${celebrant} on ${invitationData.event.dateFormatted}.\n\nGuest Name: ${guestName}\nAttending: ${count} guest(s)${note}\n\nLooking forward to celebrating with you!`;
-        } else {
-            text = `Hello ${parents}, ${son} & ${celebrant}! ✨\nSending my warmest love and blessings for the Baby Shower Ceremony of ${celebrant}. Unfortunately, I regretfully will not be able to attend in person.\n\nGuest Name: ${guestName}${note}\n\nWishing ${celebrant} and the family boundless happiness!`;
+        let text = `Hello ${parents}, ${son} & ${celebrant}! ✨🌸\n\nSending my warmest love, prayers, and heartfelt blessings for the Baby Shower Ceremony of ${celebrant}!`;
+        if (note) {
+            text += `\n\n"${note}"`;
+        }
+        if (guestName) {
+            text += `\n\nWith warm regards,\n— ${guestName}`;
         }
 
         const phone = (invitationData.rsvp && invitationData.rsvp.hostWhatsAppNumber)
@@ -468,8 +428,6 @@ function initRsvpSection() {
             : `https://wa.me/?text=${encodeURIComponent(text)}`;
     }
 
-    const nameInput = document.getElementById("rsvp-name");
-    const msgInput = document.getElementById("rsvp-message");
     if (nameInput) nameInput.addEventListener("input", updateWhatsAppLink);
     if (msgInput) msgInput.addEventListener("input", updateWhatsAppLink);
     updateWhatsAppLink();
@@ -480,9 +438,17 @@ function initRsvpSection() {
             e.preventDefault();
 
             const nameVal = nameInput ? nameInput.value.trim() : "";
+            const noteVal = msgInput ? msgInput.value.trim() : "";
+
             if (!nameVal) {
-                nameInput.focus();
-                showToast("Please enter your name to confirm RSVP.");
+                if (nameInput) nameInput.focus();
+                showToast("Please enter your name to send your blessings.");
+                return;
+            }
+
+            if (!noteVal) {
+                if (msgInput) msgInput.focus();
+                showToast("Please write a blessing or warm wish.");
                 return;
             }
 
@@ -492,10 +458,7 @@ function initRsvpSection() {
 
             // Form Reset
             form.reset();
-            count = 2;
-            if (guestDisplay) guestDisplay.textContent = count;
-            if (guestInput) guestInput.value = count;
-            labelAccept.click();
+            updateWhatsAppLink();
         });
     }
 
